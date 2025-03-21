@@ -1,0 +1,91 @@
+﻿@model gpdSW.Areas.Admin.Models.ViewModels.IndexViewModel
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/shared/LayoutAdmin.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cheese&More2</title>
+	<link rel="stylesheet" href="~/estilosadmin/estilosadminprincipal.css">
+</head>
+<body>
+
+	<section id="productos">
+		<h2>Productos</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Producto</th>
+					<th>Categoría</th>
+					<th>Precio</th>
+					<th>Stock</th>
+					<th>Opciones</th>
+				</tr>
+			</thead>
+			@foreach (var item in Model.ListaProductos)
+			{
+				<tbody>
+					<tr>
+						<td>@item.Nombre</td>
+						<td>@item.IdCategoria</td>
+						<td class="td">$@item.Precio</td>
+						@if (@item.Stock <= 5)
+						{
+							<td class="xd">@item.Stock</td>
+						}
+						else
+						{
+							<td>@item.Stock</td>
+
+						}
+						<td>
+							<a class="BotonEliminar" href="~/Admin/Home/EditarProducto/@(item.Id)">Editar</a>
+							<a class="BotonEliminar" href="~/Admin/Home/EliminarProducto/@(item.Id)">Eliminar</a>
+							<a class="BotonEliminar" href="~/Admin/Home/Stockypromociones/@(item.Id)">Stock y promociones</a>
+						</td>
+					</tr>
+				</tbody>
+
+			}
+		</table>
+	</section>
+
+	<section id="promociones">
+		<h2>Faltante de stock</h2>
+
+		<table>
+
+			<thead>
+				<tr>
+					<th>Producto</th>
+					<th>Categoria</th>
+					<th>Stock</th>
+					<th>Opciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model.ListaParaStock)
+				{
+					<tr>
+						<td>@item.Nombre</td>
+						<td>@item.IdCategoria</td>
+						<td class="xd">@item.Stock</td>
+						<td><a class="BotonEliminar" href="~/Admin/Home/Stockypromociones/@(item.Id)">Stock y promociones</a></td>
+					</tr>
+				}
+			</tbody>
+		</table>
+
+	</section>
+
+	<section id="feedbacks">
+		<h2>Feedbacks</h2>
+		<p>Lee los comentarios de nuestros clientes.</p>
+	</section>
+
+</body>
+</html>

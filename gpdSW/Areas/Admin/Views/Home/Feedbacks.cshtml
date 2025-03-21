@@ -1,0 +1,49 @@
+﻿@model gpdSW.Areas.Admin.Models.ViewModels.ReseñasViewModel
+@{
+    ViewData["Title"] = "Feedbacks";
+    Layout = "~/Views/shared/LayoutAdmin.cshtml";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cheese&More</title>
+	<link rel="stylesheet" href="~/estilosadmin/estilosadminprincipal.css">
+</head>
+<body>
+
+	<section id="promociones">
+		<h2>Faltante de stock</h2>
+
+		<table>
+
+			<thead>
+				<tr>
+					<th>Nombre del usuario</th>
+					<th>Num de esrellas</th>
+					<th>Descripcion</th>
+					<th>Contacto</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model.listareseñita)
+				{
+					<tr>
+						<td>@item.NombreUsuario</td>
+						<td>@item.Estrellas</td>
+						<td>@item.Descripcion</td>
+						<td>@item.Correo</td>
+					</tr>
+					
+				}
+				
+			</tbody>
+		</table>
+
+	</section>
+
+
+</body>
+</html>
+

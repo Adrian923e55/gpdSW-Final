@@ -1,0 +1,143 @@
+﻿@model gpdSW.Models.ViewModels.infoProductos
+@{
+	ViewData["Title"] = "VerProductoView";
+	Layout = "~/Views/shared/Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Quesos - Cheese&Morca</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .producto-detalle {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            display: flex;
+            gap: 30px;
+        }
+
+        .producto-imagen {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .producto-imagen img {
+                max-width: 100%;
+                border-radius: 10px;
+            }
+
+        .producto-info {
+            flex: 1;
+        }
+
+            .producto-info h1 {
+                color: #28a745;
+                margin-bottom: 15px;
+                font-size: 2em;
+            }
+
+            .producto-info .categoria {
+                color: #666;
+                font-size: 0.9em;
+                margin-bottom: 20px;
+            }
+
+            .producto-info .precio {
+                color: #28a745; 
+                font-size: 1.8em;
+                font-weight: bold;
+                margin-bottom: 25px;
+            }
+
+            .producto-info .boton-carrito {
+                background-color: #28a745; 
+                color: white;
+                border: none;
+                padding: 15px 30px;
+                border-radius: 5px;
+                font-size: 1em;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                margin-bottom: 25px;
+            }
+
+                .producto-info .boton-carrito:hover {
+                    background-color: #218838; /* Verde más oscuro al pasar el mouse */
+                }
+
+            .producto-info .descripcion {
+                margin-top: 20px;
+            }
+
+                .producto-info .descripcion h3 {
+                    color: #28a745; 
+                    font-size: 1.2em;
+                }
+
+                .producto-info .descripcion p {
+                    color: #666;
+                    font-size: 0.9em;
+                    line-height: 1.6;
+                    margin-bottom: 15px;
+                }
+
+                .producto-info .descripcion ul {
+                    list-style-type: none;
+                    padding: 0;
+                }
+
+                    .producto-info .descripcion ul li {
+                        margin: 10px 0;
+                        color: #666;
+                        font-size: 0.9em;
+                    }
+    </style>
+</head>
+<body>
+
+    <div class="producto-detalle">
+
+        <div class="producto-imagen">
+            <img src="~/imagenes/productos/@(Model.Id).png" alt="Tabla de Quesos">
+        </div>
+
+
+        <div class="producto-info">
+            <h1>@Model.Nombre</h1>
+            <p class="categoria">Categorías: @(Model.IdCategoria)</p>
+            <p class="precio">$@(Model.Precio)</p>
+            <button class="boton-carrito">Añadir al Carrito</button>
+
+   
+            <div class="descripcion">
+                <h3>Descripción del producto</h3>
+                <p>
+                    @(Model.Descripcion)
+                </p>
+               
+            </div>
+        </div>
+    </div>
+</body>
+</html>

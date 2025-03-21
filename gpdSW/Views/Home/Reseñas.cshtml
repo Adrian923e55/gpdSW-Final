@@ -1,0 +1,94 @@
+﻿@model gpdSW.Models.ViewModels.ReseñasViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Reseñas";
+    Layout = "~/Views/shared/Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reseñas - Chesse&More</title>
+    <link rel="stylesheet" href="~/estilos/resenas.css">
+</head>
+<body>
+    <section class="reseñas">
+        <h2>Deja tu reseña</h2>
+        <form method="post" action="~/Home/Reseñas">
+            <div class="contenedor-principal">
+
+                <div class="seccion-estrellas">
+                    <div class="calificacion">
+                        <label>Selecciona tu calificación (0-5):</label>
+                        <input type="number" id="puntuacion" asp-for="Estrellas" min="0" max="5" value="0">
+                    </div>
+                    <div class="estrellas">
+                        <span class="estrella" data-value="1">&#9734;</span>
+                        <span class="estrella" data-value="2">&#9734;</span>
+                        <span class="estrella" data-value="3">&#9734;</span>
+                        <span class="estrella" data-value="4">&#9734;</span>
+                        <span class="estrella" data-value="5">&#9734;</span>
+                    </div>
+                    <p>Tu calificación: <span id="valor-puntuacion">0</span>/5</p>
+                </div>
+
+                <div class="seccion-descripcion">
+                    <label asp-for="Descripcion">Descripción:</label>
+                    <textarea asp-for="Descripcion" rows="4" required></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-enviar">Enviar reseña</button>
+            <div class="errores"></div>
+            @Html.ValidationSummary()
+        </form>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const inputPuntuacion = document.getElementById('puntuacion');
+            const estrellas = document.querySelectorAll('.estrella');
+            const valorPuntuacion = document.getElementById('valor-puntuacion');
+
+            
+            function actualizarEstrellas(puntuacion) {
+                
+                if (puntuacion < 0) puntuacion = 0;
+                if (puntuacion > 5) puntuacion = 5;
+
+                
+                estrellas.forEach((estrella, index) => {
+                    if (index < puntuacion) {
+                        estrella.textContent = '★';
+                    } else {
+                        estrella.textContent = '☆';
+                    }
+                });
+
+                
+                valorPuntuacion.textContent = puntuacion;
+                inputPuntuacion.value = puntuacion;
+            }
+
+            
+            estrellas.forEach(estrella => {
+                estrella.addEventListener('click', function () {
+                    const valor = parseInt(estrella.getAttribute('data-value'));
+                    actualizarEstrellas(valor);
+                });
+            });
+
+            
+            inputPuntuacion.addEventListener('input', function () {
+                let puntuacion = parseInt(inputPuntuacion.value);
+                actualizarEstrellas(puntuacion);
+            });
+
+            
+            actualizarEstrellas(0);
+        });
+    </script>
+
+</body>
+</html>

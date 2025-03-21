@@ -1,0 +1,38 @@
+﻿@model gpdSW.Models.ViewModels.AccountVM.RegistroViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambiar Contraseña</title>
+    <link rel="stylesheet" href="~/estilos/Account/Registrarse.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="register-box">
+            
+            <h2>Cambiar contraseña</h2>
+
+            <form method="post" action="~/Account/CambiarContraseña">
+
+                <label for="password">Nueva contraseña:</label>
+                <input style="font-family:'Times New Roman'" type="password" id="password" placeholder="Ingrese su nueva contraseña" asp-for="Contraseña">
+
+                <label for="confirm-password">Confirmar nueva contraseña:</label>
+                <input style="font-family:'Times New Roman'" type="password" id="confirm-password" placeholder="Confirme su contraseña" asp-for="RepetirContraseña">
+
+                @Html.ValidationSummary()
+
+                <button class="btn-register">Continuar</button>
+
+            </form>
+        </div>
+
+        <div class="side-design"></div>
+    </div>
+
+</body>
+</html>

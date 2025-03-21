@@ -1,0 +1,265 @@
+﻿@model gpdSW.Models.ViewModels.VerCarrito
+@{
+	ViewData["Title"] = "VerCarrito";
+	Layout = "~/Views/shared/Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Carrito - Cheese&More</title>
+	<style>
+		.precio-container {
+			display: flex;
+			align-items: center;
+			gap: 10px; 
+		}
+
+		.precio {
+			color: #333;
+			font-weight: bold;
+			font-size: 1.1em;
+			margin: 0; 
+		}
+
+			.precio.promocion {
+				color: darkolivegreen;
+				text-decoration: line-through;
+			}
+
+		body {
+			font-family: 'Candara', serif;
+			margin: 0;
+			padding: 0;
+			background-color: white;
+		}
+
+
+		nav {
+			background-color: #b2b785;
+			padding: 15px 20px;
+		}
+
+		.nav-container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			max-width: 1200px;
+			margin: auto;
+		}
+
+		.logo {
+			font-size: 24px;
+			font-weight: bold;
+		}
+
+		.nav-links {
+			list-style: none;
+			display: flex;
+			gap: 20px;
+		}
+
+			.nav-links li a {
+				text-decoration: none;
+				color: black;
+				font-weight: bold;
+				font-size: 16px;
+			}
+
+		.icons {
+			display: flex;
+			gap: 15px;
+		}
+
+		.icon {
+			font-size: 18px;
+			cursor: pointer;
+		}
+
+
+		.saludo-usuario {
+			background-color: #D3D8B6;
+			padding: 15px 20px;
+			text-align: center;
+			font-size: 18px;
+			font-weight: bold;
+			color: #333;
+		}
+
+
+		.carrito {
+			max-width: 1200px;
+			margin: 20px auto;
+			padding: 20px;
+		}
+
+			.carrito h1 {
+				font-size: 36px;
+				margin-bottom: 20px;
+				font-weight: normal;
+				text-align: center;
+			}
+
+		.carrito-items {
+			display: grid;
+			gap: 20px;
+		}
+
+		.carrito-item {
+			background-color: white;
+			padding: 15px;
+			border-radius: 10px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			display: flex;
+			align-items: center;
+			gap: 20px;
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+		}
+
+			.carrito-item:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+			}
+
+			.carrito-item img {
+				max-width: 100px;
+				border-radius: 10px;
+			}
+
+		.carrito-item-info {
+			flex: 1;
+		}
+
+			.carrito-item-info h3 {
+				color: #333;
+				margin: 0;
+				font-size: 1.1em;
+			}
+
+			.carrito-item-info p {
+				color: #666;
+				font-size: 0.9em;
+				margin: 5px 0;
+			}
+
+			.carrito-item-info .precio {
+				color: #333;
+				font-weight: bold;
+				font-size: 1.1em;
+			}
+
+		.carrito-item-acciones {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+			.carrito-item-acciones button {
+				background-color: #D3D8B6;
+				border: none;
+				padding: 5px 10px;
+				cursor: pointer;
+				border-radius: 5px;
+				font-size: 14px;
+			}
+
+		.carrito-total {
+			text-align: right;
+			margin-top: 20px;
+			font-size: 1.2em;
+			font-weight: bold;
+		}
+
+		.promocion {
+			color: darkolivegreen;
+			text-decoration: line-through;
+		}
+
+		.carrito-acciones {
+			text-align: center;
+			margin-top: 30px;
+		}
+
+			.carrito-acciones button {
+				background-color: #28a745;
+				color: white;
+				border: none;
+				padding: 10px 20px;
+				cursor: pointer;
+				border-radius: 5px;
+				font-size: 16px;
+				transition: background-color 0.3s ease;
+			}
+
+				.carrito-acciones button:hover {
+					background-color: #218838;
+				}
+
+	</style>
+</head>
+<body>
+
+
+	<div class="saludo-usuario">
+		¡Hola, <span id="nombre-usuario">@Model.NombreUsuario</span>! Bienvenido a tu carrito de compras.
+	</div>
+
+
+	<div class="carrito">
+
+		<h1>Tu Carrito</h1>
+		@foreach (var item in Model.listitacarrito)
+		{
+
+			<div class="carrito-items">
+
+				<div class="carrito-item">
+					<img src="~/imagenes/productos/@(item.Id).png" alt="Juerta Mix: Aura 6">
+					<div class="carrito-item-info">
+						<h3>@item.Nombre</h3>
+						<p>@item.Categorias</p>
+						<div class="precio-container">
+							@if (item.Preciopromocion != null)
+							{
+								<p class="promocion">$@(item.Precio)</p>
+								<p class="precio">$@(item.Preciopromocion)</p>
+							}
+							else
+							{
+								<p class="precio">$@(item.Precio)</p>
+							}
+						</div>
+					</div>
+					<div class="carrito-item-acciones">
+						@if (item.Cantidad == 1)
+						{
+							<a href="~/Home/eliminarcarritostock/@(item.IdProducto)">🗑</a>
+						}
+						else
+						{
+							<a href="~/Home/eliminarcarritostock/@(item.IdProducto)">-</a>
+
+						}
+						<span>@item.Cantidad</span>
+						<a href="~/Home/carritostock/@(item.IdProducto)">+</a>
+
+					</div>
+				</div>
+
+			</div>
+
+
+
+		}
+
+		<div class="carrito-total">
+			Total: $@(Model.PrecioTotal)
+		</div>
+		<div class="carrito-acciones">
+			<button>Pagar Ahora</button>
+		</div>
+	</div>
+
+</body>
+</html>

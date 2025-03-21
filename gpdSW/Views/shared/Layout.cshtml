@@ -1,0 +1,68 @@
+﻿@{
+	ViewData["Title"] = "Layout";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/estilos/csscheese&more.css"> 
+</head>
+<body>
+	<nav>
+		<div class="nav-container">
+			<div class="logo">CL</div>
+			<ul class="nav-links">
+				<li><a href="~/Home/Index">Inicio</a></li>
+				<li><a href="~/Home/Catalogo">Productos</a></li>
+				<li><a href="~/Home/Eventos">Sobre Nosotros</a></li>
+				<li><a href="~/Home/Contacto">Contacto</a></li>
+				<li><a href="#">Personaliza tu paquete</a></li>
+				<li><a href="~/Home/Reseñas">Reseñas</a></li>
+			</ul>
+			<form method="get" action="~/Home/Catalogo">
+				<div class="icons">
+					<div class="search-container">
+						<input type="text" name="terminoBusqueda" placeholder="Buscar productos...">
+						<button type="submit">🔍</button>
+					</div>
+					<a href="~/User">
+						<span class="icon">👤</span>
+					</a>
+					<a href="~/Home/VerCarrito">
+						<div class="icon">🛒</div>
+					</a>
+				</div>
+			</form>
+		</div>
+	</nav>
+	@RenderBody()
+
+	<footer>
+		<div class="footer-container">
+			<div class="footer-section">
+				<h3>Contacto</h3>
+				<p>Email: info@cheesemorca.com</p>
+				<p>Teléfono: +52 123 456 7890</p>
+			</div>
+			<div class="footer-section">
+				<h3>Enlaces Rápidos</h3>
+				<a href="~/Home/Index">Inicio</a>
+				<a href="~/Home/Catalogo">Productos</a>
+				<a href="~/Home/Eventos">Sobre Nosotros</a>
+			</div>
+			<div class="footer-section">
+				<h3>Redes Sociales</h3>
+				<a href="https://www.facebook.com/FernandasPastry?rdid=bWDXsNkdsz7xT7JP&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1A7v7YQgsv%2F" target="_blank" rel="noopener noreferrer">Facebook</a>
+				<a href="https://api.whatsapp.com/send/?phone=8611167843" target="_blank" rel="noopener noreferrer">Whatsapp</a>
+				<a href="https://www.instagram.com/fernandas_pastry" target="_blank" rel="noopener noreferrer">Instagram</a>
+			</div>
+		</div>
+		<div class="copyright">
+			&copy; 2025 Cheese&More. Todos los derechos reservados.
+		</div>
+	</footer>
+
+
+</body>
+</html>

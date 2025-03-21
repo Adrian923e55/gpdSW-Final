@@ -1,0 +1,239 @@
+﻿@model gpdSW.Models.ViewModels.ReseñasViewModel
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/shared/Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Charcutería Ledezma</title>
+	<link rel="stylesheet" href="~/estilos/csscheese&more.css">
+	<link rel="stylesheet" href="~/estilos/csscupon.css">
+	<style>
+		.testimonios {
+			text-align: center;
+			padding: 40px 0;
+			overflow: hidden; 
+			position: relative; 
+		}
+
+		.carrusel {
+			position: relative;
+			max-width: 1000px; 
+			margin: 0 auto;
+			overflow: hidden; 
+		}
+
+		.tarjetas-container {
+			display: flex;
+			gap: 20px;
+			transition: transform 0.5s ease-in-out; 
+		}
+
+		.tarjeta {
+			flex: 0 0 calc(33.33% - 13.33px); 
+			background-color: #D3D8B6;
+			padding: 20px;
+			border-radius: 10px;
+			text-align: left;
+			box-sizing: border-box;
+		}
+
+		button.prev, button.next {
+			background: none;
+			border: none;
+			font-size: 24px;
+			cursor: pointer;
+			color: black;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			z-index: 1; 
+			background-color: rgba(255, 255, 255, 0.8);
+			padding: 10px;
+			border-radius: 50%; 
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+		}
+
+		button.prev {
+			left: 10px; 
+		}
+
+		button.next {
+			right: 10px; 
+		}
+	</style>
+</head>
+<body>
+	<!--Cupon-->
+	<div class="modalcupon" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3;">
+		<div class="contenido-cupon">
+			<h2>¡Recibiste un cupón!</h2>
+			<div class="discount-box">
+				<h1>10% OFF</h1>
+				<p>10% de descuento en tu primera compra como nuevo usuario</p>
+			</div>
+			<div class="coupon-box">
+				<p>Código de cupón</p>
+				<h3>NEWUSER</h3>
+				<button class="buttomodal" onclick="closeModal()">Aceptar</button>
+				<p class="valid-date">Válido hasta 26/12/2024</p>
+			</div>
+		</div>
+	</div>
+	<!--Modal-->
+	<script>
+		function closeModal() {
+			document.querySelector('.modalcupon').style.display = 'none';
+		}
+	</script>
+	<!-- Menú de navegación -->
+	<!-- Sección principal -->
+	<section class="hero">
+		<div style="text-align:left;" class="text">
+			<h1 style="font-size:70px; margin:0;  padding:0;">CHARCUTERÍA <br /> LEDEZMA</h1>
+
+			<p style="display:inline;">Descubre la magia de la charcutería y los postres gourmet.<br /> Diseña tu propia experiencia deliciosa con ingredientes frescos, pasión y un toque único.</p>
+
+
+		</div>
+		<div class="image-slider">
+			<button class="prev">&lt;</button>
+			<img height="500" width="500" src="~/imagenes/charcuteria.jpg" alt="Tabla de charcutería">
+			<button class="next">&gt;</button>
+		</div>
+	</section>
+
+
+	<section class="productos-destacados">
+		<h2>Productos destacados</h2>
+		<div class="productos-container">
+			<div class="producto">
+				<div class="producto-numero">1</div>
+				<img height="200" width="200" src="~/imagenes/quesos-mediana.jpg" alt="Tabla de quesos mediana">
+				<h3>Tabla de quesos mediana</h3>
+				<p>$685.00</p>
+			</div>
+			<div class="producto">
+				<div class="producto-numero">2</div>
+				<img height="200" width="200" src="~/imagenes/quesos-chica.jpg" alt="Tabla de quesos chica">
+				<h3>Tabla de quesos chica</h3>
+				<p>$385.00</p>
+			</div>
+			<div class="producto">
+				<div class="producto-numero">3</div>
+				<img height="200" width="200" src="~/imagenes/queso-crema.jpg" alt="Queso crema preparado">
+				<h3>Queso crema preparado</h3>
+				<p>$150.00</p>
+			</div>
+		</div>
+		<button class="ver-todo">Ver todo</button>
+	</section>
+
+
+	<section class="sobre-nosotros">
+
+		<div class="texto">
+			<h2 style="margin-top:-240px; font-size:50px;">Más sobre nuestra <br /> marca</h2>
+			<p style="font-size:20px;">
+				En Charcutería Ledezma, creemos que cada tabla cuenta una historia. Desde nuestros inicios,
+				nuestra pasión ha sido crear experiencias memorables a través de combinaciones únicas de sabores y presentaciones elegantes.
+			</p>
+			<p style="font-size:20px;">
+				Nuestro objetivo es hacer que tus reuniones, celebraciones y momentos especiales sean inolvidables.
+			</p>
+
+		</div>
+		<div class="imagenes">
+			<img width="400" height="500" src="~/imagenes/imagen2.jpg" alt="Tabla de charcutería grande" class="img-principal">
+
+		</div>
+	</section>
+
+	<!-- Sección de Testimonios -->
+	<section class="testimonios">
+		<h2>Lo que dicen nuestros clientes</h2>
+		<div class="carrusel">
+			<button class="prev">&lt;</button>
+			<div class="tarjetas-container">
+				@foreach (var item in Model.listitaresenas)
+				{
+					<div class="tarjeta">
+						<img src="~/imagenes/google-logo.png" alt="Google" class="google-logo">
+						<p class="cliente"><strong>@item.NombreUsuario</strong><br>@item.Fecha</p>
+						@if (@item.Estrellas == 5)
+						{
+							<p class="estrellas">★★★★★</p>
+						}
+						@if (@item.Estrellas == 4)
+						{
+							<p class="estrellas">★★★★</p>
+						}
+						@if (@item.Estrellas == 3)
+						{
+							<p class="estrellas">★★★</p>
+						}
+						@if (@item.Estrellas == 2)
+						{
+							<p class="estrellas">★★</p>
+						}
+						@if (@item.Estrellas == 1)
+						{
+							<p class="estrellas">★</p>
+						}
+						else
+						{
+							<p class="estrellas"></p>
+						}
+						<p>@item.Descripcion</p>
+					</div>
+				}
+			</div>
+			<button class="next">&gt;</button>
+		</div>
+	</section>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			const tarjetasContainer = document.querySelector('.tarjetas-container');
+			const tarjetas = document.querySelectorAll('.tarjeta');
+			const prevBtn = document.querySelector('.testimonios .prev');
+			const nextBtn = document.querySelector('.testimonios .next');
+
+			let currentIndex = -1;
+			const tarjetasPorVista = 2;
+			const anchoTarjeta = tarjetas[0].offsetWidth + 20;
+
+			function moverCarrusel() {
+				const offset = -currentIndex * anchoTarjeta;
+				tarjetasContainer.style.transform = `translateX(${offset}px)`;
+			}
+
+			prevBtn.addEventListener('click', () => {
+				if (currentIndex > -1) {
+					currentIndex--;
+				} else {
+					currentIndex = tarjetas.length - tarjetasPorVista;
+				}
+				moverCarrusel();
+			});
+
+			nextBtn.addEventListener('click', () => {
+				if (currentIndex < tarjetas.length - tarjetasPorVista) {
+					currentIndex++;
+				} else {
+					currentIndex = 0; 
+				}
+				moverCarrusel();
+			});
+
+	
+			moverCarrusel();
+		});
+	</script>
+</body>
+</html>
+
+

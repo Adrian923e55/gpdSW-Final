@@ -1,0 +1,30 @@
+﻿@model gpdSW.Models.ViewModels.AccountVM.RestContViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restablecer Contraseña</title>
+    <link rel="stylesheet" href="~/estilos/account/RestablecerContraseña.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2 style="font-family:'Times New Roman'">Restablecer contraseña</h2>
+
+        <form method="post" action="~/Account/RestablecerContraseña">
+            <label for="email">Correo Electrónico:</label>
+            <input style="font-family:'Times New Roman'" type="email" id="email" placeholder="Ingrese su correo" asp-for="Correo">
+            <p>Ingrese su correo electrónico para recibir un código para restablecer su contraseña.</p>
+
+            @Html.ValidationSummary()
+
+            <button style="font-family:'Times New Roman'">Enviar Correo</button>
+        </form>
+
+    </div>
+
+</body>
+</html>

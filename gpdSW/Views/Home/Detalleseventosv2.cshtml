@@ -1,0 +1,25 @@
+﻿@model gpdSW.Models.ViewModels.VerEventosViewModel
+@{
+    ViewData["Title"] = "Detalleseventosv2";
+    Layout = "~/Views/shared/Layout.cshtml";
+}
+<div class="productos-container">
+
+    <section class="sobre-nosotros">
+
+        <div class="texto">
+            <h2 style="margin-top:-240px; font-size:50px;">@Model.Nombre<br/></h2>
+            <p style="font-size:20px;">
+               @Model.Descripcion
+            </p>
+
+        </div>
+        <div class="imagenes">
+            <img width="400" height="500" src="~/imagenes/@(Model.Id).jpg" alt="Tabla de charcutería grande" class="img-principal">
+
+        </div>
+    </section>
+
+	
+</div>
+

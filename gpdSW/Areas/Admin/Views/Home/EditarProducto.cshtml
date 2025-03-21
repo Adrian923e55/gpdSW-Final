@@ -1,0 +1,181 @@
+﻿@model gpdSW.Areas.Admin.Models.ViewModels.AgregarProductoViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "EditarProducto";
+    Layout = "~/Views/shared/LayoutAdmin.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheese&More - Admin</title>
+    <style>
+        
+        body {
+            font-family: Candara, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f5e3;
+            color: #4a4a4a;
+        }
+
+        header {
+            background-color: #d4a373;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        nav {
+            background-color: #a87c52; 
+            padding: 10px;
+            text-align: center;
+        }
+
+            nav a {
+                color: white;
+                text-decoration: none;
+                margin: 0 15px;
+                font-weight: bold;
+                transition: color 0.3s ease;
+            }
+
+                nav a:hover {
+                    color: #f9f5e3; /* Cambio de color al pasar el mouse */
+                }
+
+        section {
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #d4a373; /* Color cálido para los títulos de sección */
+            border-bottom: 2px solid #d4a373;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+
+            .form-group input,
+            .form-group select {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                font-size: 16px;
+            }
+
+                .form-group input:focus,
+                .form-group select:focus {
+                    border-color: #d4a373;
+                    outline: none;
+                }
+
+        .form-actions {
+            text-align: right;
+        }
+
+            .form-actions button {
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                transition: background-color 0.3s ease;
+            }
+
+                .form-actions button.save {
+                    background-color: #28a745; /* Verde para guardar */
+                    color: white;
+                }
+
+                .form-actions button.cancel {
+                    background-color: #dc3545; /* Rojo para cancelar */
+                    color: white;
+                    margin-left: 10px;
+                }
+
+                .form-actions button:hover {
+                    opacity: 0.9;
+                }
+
+        footer {
+            background-color: #a87c52; /* Color oscuro para el pie de página */
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+            footer p {
+                margin: 0;
+            }
+    </style>
+</head>
+<body>
+
+
+    <section id="agregar-producto">
+        <h2>Agregar Nuevo Producto</h2>
+
+        <form method="post" action="~/Admin/Home/EditarProducto" enctype="multipart/form-data">
+
+            <input type="hidden" asp-for="productitos.Id" />
+
+            <div>
+                <label>Imagen:</label>
+                <input type="file" id="fileUpload1" accept="image/jpeg" asp-for="Imagen" />
+            </div>
+            <div>
+                <label for="Nombre">Nombre</label>
+                <input asp-for="productitos.Nombre" class="form-control" required />
+            </div>
+
+            <div>
+                <label for="precio">Precio:</label>
+                <input asp-for="productitos.Precio" required>
+            </div>
+            <div>
+                <label>Categoria</label>
+                <select asp-for="productitos.IdCategoria" asp-items="@(new SelectList(Model.catalogo, "Id", "Categorias"))" class="form-control">
+                </select>
+            </div>
+            <div>
+                <label>Descripcion</label>
+                <input asp-for="productitos.Descripcion" class="form-control" required />
+            </div>
+
+            <div>
+                <button type="submit">Guardar</button>
+                <a href="~/Admin">Cancelar</a>
+            </div>
+            <div class="errores"></div>
+            @Html.ValidationSummary()
+
+        </form>
+    </section>
+
+
+
+</body>
+</html>

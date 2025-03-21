@@ -1,0 +1,138 @@
+﻿
+body {
+    font-family: 'Candara', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f5e3;
+    color: #4a4a4a;
+}
+
+header {
+    background-color: #d4a373;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+ .filtros {
+            width: 250px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .filtros h2 {
+            color: #d4a373;
+            margin-bottom: 15px;
+        }
+
+        .filtros ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .filtros ul li {
+            margin: 10px 0;
+        }
+
+        .filtros ul li a {
+            text-decoration: none;
+            color: #4a4a4a;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .filtros ul li a:hover {
+            color: #d4a373; 
+        }
+h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+/*.BotonEliminar {
+    text-decoration: none;
+}*/
+
+button {
+    background-color: #e53935;
+    border: none;
+    color: white;
+    text-decoration: none;
+    padding: 5px 12px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.td {
+    color: lawngreen;
+}
+.xd {
+    color: red;
+    font-weight: bold;
+}
+nav {
+    background-color: #a87c52;
+    padding: 10px;
+    text-align: center;
+}
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+        nav a:hover {
+            color: #f9f5e3;
+        }
+
+section {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #d4a373;
+    border-bottom: 2px solid #d4a373;
+    padding-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #d4a373;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+footer {
+    background-color: #a87c52;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+    footer p {
+        margin: 0;
+    }

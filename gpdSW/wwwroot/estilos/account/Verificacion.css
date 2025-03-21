@@ -1,0 +1,90 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Century Gothic", serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: white;
+}
+
+.otp-container {
+    text-align: center;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px;
+}
+
+h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* Estilos inputs OTP */
+.otp-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+    .otp-inputs input {
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        font-size: 18px;
+        border: 1px solid black;
+        border-radius: 50%;
+        outline: none;
+    }
+
+        .otp-inputs input:focus {
+            border-color: #96aa71;
+        }
+
+/* Temporizador y link */
+.time-resend {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.resend {
+    color: blue;
+    text-decoration: none;
+}
+
+    .resend:hover {
+        text-decoration: underline;
+    }
+
+/* Btn verificar */
+.verify-btn {
+    width: 60%;
+    padding: 10px;
+    background: #c6d77f;
+    color: black;
+    border: 1px solid black;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .verify-btn:hover {
+        background: #c4c8a3;
+    }

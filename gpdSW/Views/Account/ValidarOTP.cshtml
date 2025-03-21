@@ -1,0 +1,38 @@
+﻿@model gpdSW.Models.ViewModels.AccountVM.RestContViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación OTP</title>
+    <link rel="stylesheet" href="~/estilos/account/Verificacion.css">
+</head>
+<body>
+    <div class="otp-container">
+        <h2 style="font-family:'Times New Roman'">Verificación OTP</h2>
+
+        <form method="post" action="~/Account/ValidarOTP">
+            <p>Por favor ingrese la OTP (contraseña de un solo uso) enviada a su correo registrado para completar su verificación.</p>
+
+            <div class="otp-inputs">
+                <input type="text" maxlength="1" asp-for="OTP[0]">
+                <input type="text" maxlength="1" asp-for="OTP[1]">
+                <input type="text" maxlength="1" asp-for="OTP[2]">
+                <input type="text" maxlength="1" asp-for="OTP[3]">
+                <input type="text" maxlength="1" asp-for="OTP[4]">
+            </div>
+
+            @Html.ValidationSummary()
+
+            <div class="time-resend">
+                <span class="timer">Tiempo restante: </span>
+                <a href="~/Account/RestablecerContraseña" class="resend">Reenviar código</a>
+            </div>
+
+            <button style="font-family:'Times New Roman'" class="verify-btn">Verificar</button>
+        </form>
+    </div>
+</body>
+</html>

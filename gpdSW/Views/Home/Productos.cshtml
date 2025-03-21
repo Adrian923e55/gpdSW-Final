@@ -1,0 +1,273 @@
+﻿@model gpdSW.Models.ViewModels.infoProductos
+@{
+	ViewData["Title"] = "Productos";
+	Layout = "~/Views/shared/Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@(Model.Nombre) - Cheese&More</title>
+	<style>
+		body {
+			font-family: 'Candara', serif;
+			margin: 0;
+			padding: 0;
+			background-color: white;
+		}
+
+		.xd {
+			color: red;
+			font-weight: bold;
+		}
+		/* Menú de navegación */
+		nav {
+			background-color: #b2b785;
+			padding: 15px 20px;
+		}
+
+		.nav-container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			max-width: 1200px;
+			margin: auto;
+		}
+
+		.logo {
+			font-size: 24px;
+			font-weight: bold;
+		}
+
+		.nav-links {
+			list-style: none;
+			display: flex;
+			gap: 20px;
+		}
+
+			.nav-links li a {
+				text-decoration: none;
+				color: black;
+				font-weight: bold;
+				font-size: 16px;
+			}
+
+		.icons {
+			display: flex;
+			gap: 15px;
+		}
+
+		.boton-volver {
+			background-color: #666;
+			color: white;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 5px;
+			font-size: 1em;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+			text-decoration: none;
+			display: inline-block;
+		}
+
+			.boton-volver:hover {
+				background-color: #555; /* Color de fondo al pasar el mouse */
+			}
+
+		.icon {
+			font-size: 18px;
+			cursor: pointer;
+		}
+
+		.producto-detalle-container {
+			max-width: 1200px;
+			margin: 20px auto;
+			padding: 20px;
+			display: flex;
+			gap: 30px;
+		}
+
+		.producto-imagen {
+			flex: 1;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+			.producto-imagen img {
+				max-width: 100%;
+				border-radius: 10px;
+			}
+
+		.producto-info {
+			flex: 1;
+		}
+
+			.producto-info h1 {
+				color: black;
+				margin-bottom: 15px;
+				font-size: 2em;
+			}
+
+			.producto-info .categoria {
+				color: #666;
+				font-size: 0.9em;
+				margin-bottom: 20px;
+			}
+
+
+			.producto-info .precio {
+				color: darkolivegreen;
+				font-size: 1.8em;
+				font-weight: bold;
+				margin-bottom: 25px;
+			}
+
+		.promocion {
+			color: darkolivegreen;
+			font-size: 1.8em;
+			font-weight: bold;
+			margin-bottom: 25px;
+			text-decoration: line-through;
+		}
+
+		.producto-info .boton-carrito {
+			background-color: darkolivegreen;
+			text-decoration: none;
+			color: white;
+			border: none;
+			padding: 15px 30px;
+			border-radius: 5px;
+			font-size: 1em;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+			margin-bottom: 25px;
+		}
+
+			.producto-info .boton-carrito:hover {
+				background-color: #218838;
+			}
+
+		.producto-info .descripcion {
+			margin-top: 20px;
+		}
+
+			.producto-info .descripcion h3 {
+				color: #28a745;
+				margin-bottom: 15px;
+				font-size: 1.2em;
+			}
+
+			.producto-info .descripcion p {
+				color: #666;
+				font-size: 0.9em;
+				line-height: 1.6;
+				margin-bottom: 15px;
+			}
+
+			.producto-info .descripcion ul {
+				list-style-type: none;
+				padding: 0;
+			}
+
+				.producto-info .descripcion ul li {
+					margin: 10px 0;
+					color: #666;
+					font-size: 0.9em;
+				}
+
+		/* Pie de página */
+		footer {
+			background-color: #B6BB92;
+			padding: 40px 0;
+		}
+
+		.footer-container {
+			display: flex;
+			justify-content: space-around;
+			text-align: left;
+			flex-wrap: wrap;
+		}
+
+		.footer-section h3, .footer-section h4 {
+			font-size: 18px;
+		}
+
+		.footer-section p {
+			margin: 5px 0;
+		}
+
+		.footer-section a {
+			text-decoration: none;
+			color: black;
+		}
+
+		.whatsapp-btn {
+			background-color: #D3D8B6;
+			border: none;
+			padding: 10px 15px;
+			cursor: pointer;
+			border-radius: 5px;
+		}
+
+		.copyright {
+			text-align: center;
+			font-size: 12px;
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="producto-detalle-container">
+		<!-- Botón de volver con estilos -->
+		<div style="margin-bottom: 20px;">
+			<a href="javascript:history.back()" class="boton-volver">Volver</a>
+		</div>
+
+		<div class="producto-imagen">
+			<img src="~/imagenes/productos/@(Model.Id).png" alt="Tabla de Quesos">
+		</div>
+
+		<div class="producto-info">
+			<h1>@Model.Nombre</h1>
+			<a href="~/Home/Catalogo/@(Model.catid)" class="categoria">@(Model.IdCategoria)</a>
+
+			@if (Model.Stock <= 5)
+			{
+				@if (Model.Stock == 0)
+				{
+					<p>Sin stock</p>
+				}
+				else
+				{
+					<p>Ultimas @(Model.Stock) Piezas</p>
+				}
+			}
+			else
+			{
+				<p>@(Model.Stock) Piezas Disponibles</p>
+			}
+
+			@if (Model.Preciopromocion == null)
+			{
+				<p class="precio">$@(Model.Precio)</p>
+			}
+			else
+			{
+				<p class="promocion">$@(Model.Precio) <p class="precio">$@(Model.Preciopromocion)</p> </p>
+			}
+
+			<a href="~/Home/Carrito/@(Model.Id)" class="boton-carrito">Añadir al Carrito</a>
+
+			<div class="descripcion">
+				<h3>Descripción del producto</h3>
+				<p>
+					@Model.Descripcion
+				</p>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

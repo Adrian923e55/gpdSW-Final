@@ -1,0 +1,125 @@
+﻿@model gpdSW.Models.Entities.Usuarios
+@{
+    ViewData["Title"] = "Home User";
+    Layout = "~/Views/shared/Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Candara', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Contenedor principal */
+        .perfil-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 30px;
+            text-align: left;
+        }
+
+        /* Encabezado */
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+            .header h1 {
+                font-size: 24px;
+                margin: 0;
+                color: #333;
+            }
+
+            .header h2 {
+                font-size: 16px;
+                color: #666;
+                margin: 5px 0;
+            }
+
+        /* Información del usuario */
+        .info-usuario {
+            margin-bottom: 20px;
+        }
+
+            .info-usuario p {
+                font-size: 16px;
+                margin: 10px 0;
+            }
+
+            .info-usuario strong {
+                color: #333;
+                font-weight: bold;
+            }
+
+        /* Botones */
+        .botones {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+            .botones button {
+                background-color: #b2b785;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                border-radius: 5px;
+                font-size: 14px;
+                transition: background-color 0.3s ease;
+            }
+
+                .botones button:hover {
+                    background-color: #9aa06d;
+                }
+
+                .botones button.cerrar-sesion {
+                    background-color: #dc3545;
+                }
+
+                    .botones button.cerrar-sesion:hover {
+                        background-color: #c82333;
+                    }
+    </style>
+</head>
+<body>
+
+
+   
+    <div class="perfil-container">
+    
+        <div class="header">
+            <h1>@Model.NombreUsuario</h1>
+            <h2>Estadística + Informeño Académy</h2>
+        </div>
+
+      
+        <div class="info-usuario">
+            <p><strong>Nombre:</strong>@Model.NombreUsuario</p>
+            <p><strong>Correo electrónico:</strong>@Model.Correo</p>
+            <p><strong>País:</strong> Mexico</p>
+            <p><strong>Estado:</strong>Coahuila</p>
+        </div>
+
+   
+        <div class="botones">
+            <a class="volver" href="~/Home">Volver</a>
+            <a class="cerrar-sesion" href="~/Account/CerrarSesion">Cerrar Sesión</a>
+        </div>
+    </div>
+
+</body>
+</html>
